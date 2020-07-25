@@ -1,0 +1,21 @@
+{
+  "name": "HotPepparBot",
+  "version": "0.1.0",
+  "private": true,
+  "scripts": {
+    "start": "bin/hubot run"
+  },
+  "author": "",
+  "keywords": [
+    "hubot",
+    "direct",
+    "bot",
+    "daab"
+  ],
+  "description": "",
+  "dependencies": {
+    "lisb-hubot": "^3.3.2",
+    "lisb-hubot-redis-brain": "^1.0.0",
+    "lisb-forever": "^1.0.0"
+  }
+}
