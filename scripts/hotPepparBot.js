@@ -1,4 +1,6 @@
 const http = require('http');
+const fs = require('fs');
+
 const Sequelize = require('sequelize');
 const sequelize = new Sequelize(
   'd3h5mjgqac7vqk',
@@ -6,7 +8,7 @@ const sequelize = new Sequelize(
   'b76c8390159bfa23be1ac2bb1bf4a9640eefd9acb50e52f042f0b14546c8863b',
   {
     //host: 'ホスト名',
-  host: 'localhost',
+  host: 'c2-35-173-94-156.compute-1.amazonaws.com',
   dialect: 'postgres'
   });
 
@@ -49,7 +51,7 @@ module.exports = (robot) => {
     await Logs.destroy({ where:{} });
   });
 
-  robot.hear(/店　(.*)$/i, async (res) => {
+  robot.respond(/ご飯　(.*)$/i, (res) => {
     let location = res.match[1];
     let url = `http://webservice.recruit.co.jp/hotpepper/gourmet/v1/?key=6275a5671c376b6a&format=json&order=4&count=5&address=${location}`
     let restaurantData;
