@@ -49,9 +49,11 @@ module.exports = (robot) => {
     await Logs.destroy({ where:{} });
   });
 
-  robot.respond(/店$/i, async (res) => {
-    const url = 'http://webservice.recruit.co.jp/hotpepper/gourmet/v1/?key=6275a5671c376b6a&order=4&address=東京&count=5&format=json'
+  robot.hear(/店　(.*)$/i, async (res) => {
+    let location = res.match[1];
+    let url = `http://webservice.recruit.co.jp/hotpepper/gourmet/v1/?key=6275a5671c376b6a&format=json&order=4&count=5&address=${location}`
     let restaurantData;
+    let info = [];
     http.get(url, function(httpResult) {
       let body = '';
       httpResult.on('data', function(chunk) {
@@ -59,9 +61,15 @@ module.exports = (robot) => {
       });
       httpResult.on('end', function(res) {
         restaurantData = JSON.parse(body);
-        console.log(restaurantData.results.shop[0]);
+        for(let i = 0; i < 3; i++){
+          info[i] = restaurantData.results.shop[i].name + restaurantData.results.shop[i].urls.pc;
+        }
       });
     });
+    let log = function(){
+      res.send(`${info[0]} \n\n ${info[1]} \n\n ${info[2]}`);
+    };
+    setTimeout(log, 1000);
   });
-  
+
 }
