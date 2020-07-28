@@ -1,6 +1,4 @@
 const http = require('http');
-const fs = require('fs');
-
 const Sequelize = require('sequelize');
 const sequelize = new Sequelize(
   'd3h5mjgqac7vqk',
@@ -37,11 +35,15 @@ module.exports = (robot) => {
     await newLog.save();
   });
 
-  robot.respond(/PRINT$/i, (res) => {
+  robot.respond(/PRINT (.*)$/i, (res) => {
     Logs.findAll().then(function(result) {
       let allMessages = result.map(function(e) {
         let timeStamp = e.createdAt.toLocaleDateString() + " " + e.createdAt.toLocaleTimeString();
-        return e.user_name + "[" + timeStamp + "]:" + e.message;
+        if(e.user_name === res.match[1]){
+          return e.user_name + "[" + timeStamp + "]:" + e.message;
+        }else if(e.createdAt.toLocaleDateString() === res.match[1]){
+          return e.user_name + "[" + timeStamp + "]:" + e.message;
+        }
       });
       res.send(allMessages.join('\n'));
     });
@@ -53,7 +55,7 @@ module.exports = (robot) => {
 
   robot.respond(/ご飯　(.*)$/i, (res) => {
     let location = res.match[1];
-    let url = `http://webservice.recruit.co.jp/hotpepper/gourmet/v1/?key=6275a5671c376b6a&format=json&order=4&count=5&address=${location}`
+    let url = `http://webservice.recruit.co.jp/hotpepper/gourmet/v1/?key=6275a5671c376b6a&format=json&order=4&count=3&address=${location}`
     let restaurantData;
     let info = [];
     http.get(url, function(httpResult) {
