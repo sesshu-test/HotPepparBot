@@ -42,7 +42,7 @@ module.exports = (robot) => {
       });
     });
     let sendInfo = function(){
-      res.send(`${restaurantInfo[0]} \n\n ${restaurantInfo[1]} \n\n ${restaurantInfo[2]}`);
+      res.send(`${location}で人気のお店3つです! \n\n ${restaurantInfo[0]} \n\n ${restaurantInfo[1]} \n\n ${restaurantInfo[2]}`);
     };
     setTimeout(sendInfo, 1000);
     let newSearch = new Logs({
