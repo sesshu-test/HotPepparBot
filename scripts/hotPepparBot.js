@@ -10,7 +10,7 @@ const sequelize = new Sequelize(
   dialect: 'postgres'
   });
 
-const Logs = sequelize.define('searchHistory', {
+const Logs = sequelize.define('searchhistory', {
   id: { type: Sequelize.INTEGER, autoIncrement: true, primaryKey: true },
   word: Sequelize.TEXT
   },
