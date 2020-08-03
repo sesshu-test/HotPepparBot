@@ -6,7 +6,7 @@ const sequelize = new Sequelize(
   'b76c8390159bfa23be1ac2bb1bf4a9640eefd9acb50e52f042f0b14546c8863b',
   {
     //host: 'ホスト名',
-  host: 'localhost',
+  host: 'c2-35-173-94-156.compute-1.amazonaws.com',
   dialect: 'postgres'
   });
 
@@ -72,6 +72,10 @@ module.exports = (robot) => {
 
   robot.respond(/ヘルプ$/i, (res) => {
     res.send('ご飯　地名：その地名が住所に含まれる飲食店を、HotPepparグルメの人気順で表示する\n履歴：検索履歴を表示する\n消去：検索履歴を消去する');
+  });
+
+  robot.respond('map', (res) => {
+    res.send(`Your location is ${res.json.place} at ${res.json.lat}, ${res.json.lng}`);
   });
 
 }
