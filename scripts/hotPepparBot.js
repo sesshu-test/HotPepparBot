@@ -70,4 +70,8 @@ module.exports = (robot) => {
     await Logs.destroy({ where:{} });
   });
 
+  robot.respond(/ヘルプ$/i, (res) => {
+    res.send('ご飯　地名：その地名が住所に含まれる飲食店を、HotPepparグルメの人気順で表示する\n履歴：検索履歴を表示する\n消去：検索履歴を消去する');
+  });
+
 }
