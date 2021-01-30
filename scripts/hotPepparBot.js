@@ -1,11 +1,11 @@
 const http = require('http');
 const Sequelize = require('sequelize');
 const sequelize = new Sequelize(
-  'd3h5mjgqac7vqk',
+  'データベース名',
   'cizedaqmsfeopj',
-  'b76c8390159bfa23be1ac2bb1bf4a9640eefd9acb50e52f042f0b14546c8863b',
+  'パスワード',
   {
-    //host: 'ホスト名',
+  //host: 'ホスト名',
   host: 'ec2-35-173-94-156.compute-1.amazonaws.com',
   dialect: 'postgres'
   });
