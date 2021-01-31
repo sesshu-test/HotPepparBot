@@ -26,7 +26,7 @@ module.exports = (robot) => {
 
   robot.respond(/ご飯　(.*)$/i, async (res) => {
     let location = res.match[1];
-    let url = `http://webservice.recruit.co.jp/hotpepper/gourmet/v1/?key=6275a5671c376b6a&format=json&order=4&count=3&address=${location}`
+    let url = `http://webservice.recruit.co.jp/hotpepper/gourmet/v1/?key=xxxxxxx&format=json&order=4&count=3&address=${location}`
     let restaurantData;
     let restaurantInfo = [];
     http.get(url, function(httpResult) {
